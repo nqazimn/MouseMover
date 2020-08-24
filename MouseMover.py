@@ -1,21 +1,20 @@
 import pynput
 import time
-from Tkinter import *
+import tkinter as tk
 import keyboard
 
-master = Tk()
+master = tk.Tk()
 
 if keyboard.is_pressed('q'):
     print("Hello!")
 
 notpressed = True
 
-
 def callback():
     while notpressed == True:
-            print "click!"
-            if keyboard.is_pressed('space'):
-                notpressed == False
+        print("click")
+        if keyboard.is_pressed('space'):
+            notpressed == False
 
 def mouseMover():
     mouse = pynput.mouse.Controller()
@@ -28,7 +27,7 @@ def mouseMover():
             mouse.move(500, 1000)
             mouse.press(pynput.mouse.Button.right)
             mouse.release(pynput.mouse.Button.right)
-            time.sleep(5)
+            time.sleep(60)
             if keyboard.is_pressed('q'):  # if key 'q' is pressed 
                 print('You Pressed A Key!')
                 break  # finishing the loop
@@ -38,7 +37,7 @@ def mouseMover():
             if keyboard.is_pressed('q'):  # if key 'q' is pressed 
                 print('You Pressed A Key!')
                 break  # finishing the loop
-            time.sleep(5)
+            time.sleep(60)
             mouse.position = (0,0)
         except keyboard.is_pressed('q'):
             print('You Pressed A Key Two!')
@@ -50,9 +49,7 @@ def mouseMover():
 
     
 
-b = Button(master, text="OK", command=mouseMover)
+b = tk.Button(master, text="OK", command=mouseMover)
 b.pack()
 
-mainloop()
-
-
+master.mainloop()
